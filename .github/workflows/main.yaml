@@ -3,7 +3,7 @@ name: docker-jslinter
 on:
   push:
     tags:
-      - v*
+      - *
 
 jobs:
   main:
