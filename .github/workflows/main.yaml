@@ -16,7 +16,7 @@ jobs:
 
       - name: Build
         run: |
-          docker build --build-arg VERSION=$(VER_ESLINT) --tag tivix/docker-jslinter .
+          docker build --build-arg VERSION=${VER_ESLINT} --tag tivix/docker-jslinter .
 
       - name: Push
         run: |
