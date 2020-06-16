@@ -3,19 +3,20 @@ name: docker-jslinter
 on:
   push:
     tags:
-      - *
+      - v*
 
 jobs:
   main:
     runs-on: ubuntu-18.04
+    env:
+      VER_ESLINT=7.2.0
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
       - name: Build
         run: |
-          VER=${GITHUB_REF##*/}
-          docker build --build-arg VERSION=$(VER) --tag tivix/docker-jslinter .
+          docker build --build-arg VERSION=$(VER_ESLINT) --tag tivix/docker-jslinter .
 
       - name: Push
         run: |
