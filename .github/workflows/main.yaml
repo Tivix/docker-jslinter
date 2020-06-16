@@ -1,0 +1,26 @@
+name: docker-jslinter
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  main:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          VER=${GITHUB_REF##*/}
+          docker build --build-arg VERSION=$(VER) --tag tivix/docker-jslinter .
+
+      - name: Push
+        run: |
+          echo "${{ secrets.DOCKER_HUB_PASS }}" | docker login -u ${{ secrets.DOCKER_HUB_USER }} --password-stdin
+          TAG=${GITHUB_REF##*/}
+          echo "Pushing tag: ${TAG}"
+          docker tag tivix/docker-jslinter tivix/docker-jslinter:${TAG}
+          docker push tivix/docker-jslinter:${TAG}
