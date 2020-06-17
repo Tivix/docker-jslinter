@@ -12,7 +12,7 @@ RUN set -eux \
 	   @tivix/prettier-config \
 	   @tivix/typescript-config \
 	   @tivix/stylelint-config \
-	   typescript-eslint \
+	   typescript \
 	&& /node_modules/eslint/bin/eslint.js --version | grep -E '^v?[0-9]+'
 
 # Remove unecessary files
