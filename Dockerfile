@@ -12,6 +12,7 @@ RUN set -eux \
 	   @tivix/prettier-config \
 	   @tivix/typescript-config \
 	   @tivix/stylelint-config \
+	   prettier \
 	   typescript \
 	&& /node_modules/eslint/bin/eslint.js --version | grep -E '^v?[0-9]+'
 
