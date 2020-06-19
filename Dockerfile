@@ -48,11 +48,12 @@ FROM alpine:3.12
 LABEL \
 	maintainer="Tivix <michal.kopacki@tivix.com>" \
 	repo="https://github.com/tivix/docker-jslinter"
+COPY docker-entrypoint.sh /
 COPY --from=builder /node_modules/ /node_modules/
 RUN set -eux \
 	&& apk add --no-cache nodejs-current \
-	&& ln -sf /node_modules/eslint/bin/eslint.js /usr/bin/eslint
+	&& ln -sf /node_modules/eslint/bin/eslint.js /usr/bin/eslint \
+	&& ln -sf /node_modules/prettier/bin-prettier.js /usr/bin/prettier
 
 WORKDIR /code
-ENTRYPOINT ["eslint"]
-CMD ["--help"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
