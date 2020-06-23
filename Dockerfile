@@ -7,7 +7,7 @@ RUN set -eux \
 
 ARG VERSION=7.2.0
 RUN set -eux \
-	&& npm install global --production --remove-dev eslint@$VERSION \
+	&& npm install --global —-production —-remove-dev eslint@$VERSION \
 	   @tivix/eslint-config \
 	   @tivix/prettier-config \
 	   @tivix/typescript-config \
