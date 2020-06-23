@@ -7,7 +7,7 @@ RUN set -eux \
 
 ARG VERSION=7.2.0
 RUN set -eux \
-	&& npm install --global --production --remove-dev eslint@$VERSION \
+	&& npm install --production --remove-dev eslint@$VERSION \
 	   @tivix/eslint-config \
 	   @tivix/prettier-config \
 	   @tivix/typescript-config \
@@ -15,7 +15,7 @@ RUN set -eux \
 	   prettier \
 	   eslint-plugin-prettier \
 	   typescript \
-	&& /usr/bin/eslint --version | grep -E '^v?[0-9]+'
+	&& /node_modules/eslint/bin/eslint.js --version | grep -E '^v?[0-9]+'
 
 # Remove unecessary files
 RUN set -eux \
@@ -51,7 +51,9 @@ LABEL \
 COPY docker-entrypoint.sh /
 COPY --from=builder /node_modules/ /node_modules/
 RUN set -eux \
-	&& apk add --no-cache nodejs-current 
+	&& apk add --no-cache nodejs-current \
+	&& ln -sf /node_modules/eslint/bin/eslint.js /usr/bin/eslint \
+	&& ln -sf /node_modules/prettier/bin-prettier.js /usr/bin/prettier
 
 WORKDIR /code
 ENTRYPOINT ["/docker-entrypoint.sh"]
