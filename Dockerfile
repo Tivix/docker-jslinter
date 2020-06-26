@@ -41,7 +41,6 @@ RUN set -eux \
 	&& find /node_modules -type f -iname '*.mjs' -exec rm {} \; \
 	&& find /node_modules -type f -iname '*.mli' -exec rm {} \; \
 	&& find /node_modules -type f -iname '*.png' -exec rm {} \; \
-	&& find /node_modules -type f -iname '*.ts' -exec rm {} \; \
 	&& find /node_modules -type f -iname '*.yml' -exec rm {} \;
 
 FROM alpine:3.12
