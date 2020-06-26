@@ -53,7 +53,8 @@ COPY --from=builder /node_modules/ /node_modules/
 RUN set -eux \
 	&& apk add --no-cache nodejs-current \
 	&& ln -sf /node_modules/eslint/bin/eslint.js /usr/bin/eslint \
-	&& ln -sf /node_modules/prettier/bin-prettier.js /usr/bin/prettier
+	&& ln -sf /node_modules/prettier/bin-prettier.js /usr/bin/prettier \
+	&& ln -sf /node_modules/typescript/bin/tsc /usr/bin/tsc
 
 WORKDIR /code
 ENTRYPOINT ["/docker-entrypoint.sh"]
