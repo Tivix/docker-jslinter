@@ -9,7 +9,7 @@ jobs:
   main:
     runs-on: ubuntu-18.04
     env:
-      VER_ESLINT: 6.8.0
+      VER_ESLINT: 7.5.0
     steps:
       - name: Checkout
         uses: actions/checkout@v2
