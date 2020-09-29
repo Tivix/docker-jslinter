@@ -5,7 +5,7 @@ RUN set -eux \
 		nodejs-current \
 		npm
 
-ARG VERSION=7.5.0
+ARG VERSION=7.9.0
 RUN set -eux \
 	&& npm install --production --remove-dev eslint@$VERSION \
 	   @tivix/eslint-config \
